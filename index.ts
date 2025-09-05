@@ -1,8 +1,16 @@
 import express from 'express';
-import type { Request, Response, NextFunction } from 'express';
-import {DB} from "./server/dataStore/memoryDB/index.js";
+import type { Request, Response, NextFunction, ErrorRequestHandler } from 'express';
+import {DB} from "./server/dataStore/index.js";
+import {DbBuild} from "./server/dataStore/index.js";
+import { createPost,listPosts } from './Handlers/postHandler.js';
+
 // import type { Post, User, commentss, likes } from "./server/types.ts"; // keep only if needed
 
+//nodemon --exec "node --loader ts-node/esm" index.ts
+
+(async ()=>{
+    await DbBuild();
+    
 const app = express();
 app.use(express.json());
 const port = 3000;
@@ -18,15 +26,17 @@ app.use(requestLoggerMiddleware);
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello World!');
 });
-app.post('/posts', (req: Request, res: Response) => {
-    const post = req.body ;
-    DB.createPost(post);
-    res.status(201).send('Post created');
-});
-app.get('/posts', (req: Request, res: Response) => {
-    res.send(DB.listtPosts());
-});
 
+app.post('/v1/posts', createPost);
+app.get('/v1/posts', listPosts );
+
+
+const errorHandler:ErrorRequestHandler = (err: Error, req: Request, res: Response, next: NextFunction) => {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+}
+
+app.use(errorHandler);
 // Start server
 app.listen(port, () => {
   console.log(`🚀 Server running at http://localhost:${port}`);
@@ -34,3 +44,4 @@ app.listen(port, () => {
 
 
 
+})();

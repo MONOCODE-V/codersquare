@@ -9,7 +9,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-  "start": "nodemon --exec \"node --loader ts-node/esm\" index.ts"
+    "start": "nodemon --exec \"node --loader ts-node/esm\" index.ts"
   },
   "repository": {
     "type": "git",
@@ -23,10 +23,14 @@
   },
   "homepage": "https://github.com/MONOCODE-V/codersquare#readme",
   "dependencies": {
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "express-async-handler": "^1.2.0",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7"
   },
   "devDependencies": {
     "@types/express": "^5.0.3",
+    "@types/sqlite3": "^3.1.11",
     "nodemon": "^3.1.10",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.2"
