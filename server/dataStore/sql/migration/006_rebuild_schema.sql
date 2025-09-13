@@ -1,13 +1,17 @@
+-- Migration: Rebuild schema to match TypeScript types
 
--- Migration: Initial schema for Codersquare (matches TypeScript types)
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS posts;
+DROP TABLE IF EXISTS comments;
+DROP TABLE IF EXISTS likes;
 
 CREATE TABLE users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     firstName TEXT,
     lastName TEXT,
     password TEXT NOT NULL,
-    email TEXT NOT NULL UNIQUE,
-    username TEXT NOT NULL UNIQUE
+    email TEXT NOT NULL,
+    username TEXT NOT NULL
 );
 
 CREATE TABLE posts (

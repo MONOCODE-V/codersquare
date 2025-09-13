@@ -1,5 +1,5 @@
 export interface User {
-  id: number;
+  id?: number;
   firstName: string;
   lastName: string;
   password: string;
@@ -10,9 +10,9 @@ export interface User {
 export interface Post {
   id: number;
   title: string;
-  URL: string;
+  url: string;
   userId: number;
-  postedAt: number;
+  dateCreated: number;
 }
 
 export interface likes {
@@ -20,11 +20,13 @@ userId: number;
 postId: number;
 }
 export interface commentss {
-  id: number;
+  id?: number;
   userId: number;
   postId: number;
   comment: string;
-  commentedAt: number;
+  dateCreated: number;
 }
-
+export interface JWTpayload {
+ userId: string;
+}
 

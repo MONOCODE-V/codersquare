@@ -16,7 +16,7 @@ export class inmemoryDatastore implements dataStore {
     this.posts.push(post);
     return Promise.resolve();
   }
-  getPostby(id: number): Promise<Post | undefined> {
+  getPostbyID(id: number): Promise<Post | undefined> {
     return Promise.resolve(this.posts.find(post => post.id === id));
   }
   deletePostbyId(id: string): Promise<void> {
@@ -29,6 +29,9 @@ export class inmemoryDatastore implements dataStore {
   }
   getbyemail(email: string): Promise<User | undefined> {
     return Promise.resolve(this.users.find(user => user.email === email));
+  }
+   getUserById(id: number): Promise<User | undefined> {
+    return Promise.resolve(this.users.find(user => user.id === id));
   }
   getbyusername(username: string): Promise<User | undefined> {
     return Promise.resolve(this.users.find(user => user.username === username));

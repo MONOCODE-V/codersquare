@@ -9,7 +9,10 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --exec \"node --loader ts-node/esm\" index.ts"
+    "start": "nodemon --exec \"node --loader ts-node/esm\" index.ts",
+    "start:pord": "pm2 delete all && pm2 start --name codersquare --interpreter node --interpreter-args=\"--loader ts-node/esm\" index.ts",
+    "build": "tsc"
+    
   },
   "repository": {
     "type": "git",
@@ -23,13 +26,17 @@
   },
   "homepage": "https://github.com/MONOCODE-V/codersquare#readme",
   "dependencies": {
+    "dotenv": "^17.2.2",
     "express": "^5.1.0",
     "express-async-handler": "^1.2.0",
+    "jsonwebtoken": "^9.0.2",
+    "pm2": "^6.0.10",
     "sqlite": "^5.1.1",
     "sqlite3": "^5.1.7"
   },
   "devDependencies": {
     "@types/express": "^5.0.3",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/sqlite3": "^3.1.11",
     "nodemon": "^3.1.10",
     "ts-node": "^10.9.2",
